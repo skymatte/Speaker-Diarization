@@ -1,64 +1,44 @@
-# - Kaldi ASR Report
-    Name: Shivam Kumar 170668
-![pipeline](https://i.ibb.co/726bsp3/kaldi-text-and-logo.png)
+# - Speaker Diarization
 
-- - - - 
+
+Group: Enthusiasm_Overflow
+
+
+![pipeline](https://i.ibb.co/WvRNMNm/5fdfb94d16213785ea61b730-MPsoy-Uk-STj-Wm-Bd-Ql.png)
+
+*
 
 # Instructions
-**NOTE:** 
-Download all code and store **digits** folder in ***Documents/627/kaldi/egs/*** directory. 
-    You can place remaining .py and .sh files any where but they should be together.
-### Files & Folders
- |  Name |  Description |
- |---------|---------|
- | ```Transcribe.sh``` | Gives the prediction on test wav file |
- | ```Transcribe.py``` | Containes the backend for running all the bash scripts|
- | *digits* | Contains all the code for digit recognition |
- | ```dataprep.sh``` | Code to prepare datasets and Language folders |
- | *digits/data/test_original* | Contains the original test set files on which ER's are calculated [^footnote]|
- | *digits/digits_audio/test_original* | Contains the original test set audios on which ER's are calculated [^footnote] |
- [^footnote]: *-> May or may not be present (is created when transcribe file is run to save data from losing)
- 
-###### Note: To run any of the above code-
-1. Replace the username *darkmask* in files ``data/*/wav.scp`` by your username {where * belongs to [test, train]}. 
-2. Replace username **darkmask** in string of *```curr_path```* variable in line 7 & 68 in ``transcribe.py`` by your username.
 
-### Instructions for training the code
-- **For training the model** 
-    > Change to digits directory (by using ```cd 627/kaldi/egs/digits/```)
-    > ```chmod u+x run.sh```
-    > ```./run.sh```
-    > If error is being faced then run ```utils/fix_data_dir.sh data/test``` & ```utils/fix_data_dir.sh data/test```
-    > Rerun ```./run.sh```
-    
+### Files
 
-- **For obtaining transcriptions** 
-    > Create a folder named __audios__ in *Downloads* directory.
-    > Place all the test audio files (<file>.wav) in *audios* folder.
-    > Change to 627 directory (by using  ```cd 627```)
-    > Make the script executable by  ```chmod u+x transcribe.  ```
-    > Suppose audio file is **file_name.wav**. Then we will pass only file_name as argument. (without .wav extention)
-    > Run  ```./transcribe.sh *file_name*```
-    > The predictions will be displayed at the end of output.
+| Files & Links | Description |
+| --- | --- |
+| [ami_public_manual_1.6.2](https://drive.google.com/drive/folders/1bjxLF1i9prFotXZjB9brgCbpmEPqRzO7?usp=sharing) | Our training AMI CORPUS FOLDER containing speaker time stamps |
+|[code](https://drive.google.com/drive/folders/1JQhDmVTyfLL-7-PfGfgtaZ25k1IFRHJ9?usp=sharing)|Contains python script |
+|[ATML](https://drive.google.com/drive/folders/1WlfQSqm7KP7mNgWUVl1oL8XAWJbSFsZq?usp=sharing)|Folder containing ami_public_manual_1.6.2 and code folder|
+| [amicorpusfinal](https://drive.google.com/drive/folders/1wphq5-rMTz2WC81Ma99YdGwESw4c5F7q?usp=sharing) | Training AMI WAV dataset. |
 
-### Experiments done
 
-Following experiments with code and dataset were conducted by me:
-* I recorded datasets from each of my family members to created *variation* and *relatively large* dataset.
-* I also used *global* speaker_id instead of dividing them into subgroups based on names and gender, so as to make the model to focus training just on the predictions. 
-* Experimented by manually changing totgauss while Mono Training (also used Tidigits's script for better assumption)
+### Libraries needed to be imported
 
-##### Few Dependencies & installation process-
+We use the following libraries:
 
-Install Kaldi in 627 directory by running:
-1. `cd home/{your_username}/Documents/627/`
-2. `git clone https://github.com/kaldi-asr/kaldi.git`
-3. `cd kaldi/cd tools/`
-4. `extras/check_dependencies.sh` (if something is not installed then install it using the comment provided in console.)
-5. `make -j 4`
-6. `extras/install_irstlm.sh`
-7. `cd ../src/` and `run ./configure`
-8. `make depend -j 4` and `make depend -j 4`
+* pydub
+* xmltodict
+* resemblyzer
+* pyannote
+* noisereduce
+* spectralcluster
+* PyTorch
+* pyannote.metrics
+* pyannote.core
+* hdbscan
+* keras
+* tensorflow_addons
+* python_speech_features
 
-Kaldi is installed. Just we need to install one more dependency.
-1. Install SRILM by running `kaldi/tools/install_srilm.sh` and following all the steps.
+###### Note: To install any of the above libraries:
+
+1. Use `pip install library_name` for your local system.
+2. Use `!pip install library_name` when installing on Colab.
